@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kho Tàng Sách - Trạm Sạc Pin Tâm Hồn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: url(https://png.pngtree.com/background/20210710/original/pngtree-creative-synthesis-simple-book-education-and-training-background-picture-image_1048845.jpg);
+      background-size: cover;
+      color: #1e293b;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      z-index: -1;
+    }
+
+    header {
+      padding: 15px 50px;
+      color: rgb(47, 158, 249);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      height: 150px;
+      width: auto;
+      margin-right: 15px;
+      padding-left: 10px;
+    }
+
+    .left-info h1 {
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: rgb(47, 158, 249);
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #b79b2c;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #1e40af;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      align-items:stretch;
+    }
+
+    .book-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height:100%;
+      transition: transform 0.3s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #334155;
+      text-align: center;
+    }
+
+    .book-author, .book-price {
+      margin-top: 8px;
+      font-size: 1rem;
+      color: #475569;
+    }
+
+    .book-actions {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .book-actions button {
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 999px;
+      font-weight:600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width:100%;
+      letter-spacing: 0.5px;
+    }
+    .book-img{
+        width:100%;
+        height:200px;
+        object-fit:cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        flex-shrink:0;
+    }
+
+    .info-btn {
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      color: white;
+    }
+
+    .info-btn:hover {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      transform: translateY(-2px);
+    }
+
+    .add-btn {
+      background: linear-gradient(135deg, #fd89d2, #fc60bb);
+      color: white;
+    }
+
+    .add-btn:hover {
+      background: linear-gradient(135deg, #fd89d2, #fc60bb);
+      transform: translateY(-2px);
+    }
+    .filter-bar{
+        display:flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 2rem;
+    }
+    .filter-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 30px;
+        background: #cfe8ff;
+        color: #1e3a8a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight:600;
+    }
+    .filter-btn:hover,
+    .filter-btn.active{
+        background: #93c5fd;
+        color:#fff;
+    }
+    .logo img{
+            height: 120px;
+            width: auto;
+    }
+    .book-details{
+        display: none;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease;
+    }
+    .book-card.expanded .book-details {
+        display: block;
+    }
+    @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="C:\Users\Windows\Downloads\logo.png" alt=" Trạm Sạc Pin Tâm Hồn">
+    </div>
+    <div class="left-info">
+      <h1><strong>Trạm Sạc Pin Tâm Hồn</strong></h1>
+      <p>Nguyễn Vũ Thanh Giang</p>
+      <p>MSSV: 31231026898</p>
+    </div>
+    <nav>
+      <a href="books.html">Trang chủ</a>
+      <a href="books.html">Kho tàng sách</a>
+      <a href="cart.html">Giỏ hàng</a>
+      <a href="#login">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Kho Tàng Sách</h2>
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterBooks('all')">Tất cả</button>
+        <button class="filter-btn" onclick="filterBooks('tam-ly')">Tâm lý - Kỹ năng</button>
+        <button class="filter-btn" onclick="filterBooks('van-hoc')">Văn học</button>
+        <button class="filter-btn" onclick="filterBooks('trinh-tham')">Trinh thám</button>
+    </div>
+    <div class="book-grid">
+      <div class="book-card van-hoc">
+        <img src="https://salt.tikicdn.com/cache/750x750/ts/product/f5/f8/63/3af8234a91118f5df5b4ecc951c744fc.jpg.webp" alt="Hai số phận" class="book-img"/>
+        <div class="book-title"> Hai số phận </div>
+        <div class="book-author"><strong> Tác giả: </strong> Jeffrey Archer</div>
+        <div class="book-price"><strong> Giá: </strong> 98.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Hai số phận',98000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Văn học </p>
+            <p><strong> Năm xuất bản: </strong> 1979</p>
+            <p><strong> Mô tả:</strong> Hai số phận kể về cuộc đời đối lập của William Kane và Abel Rosnovski – một người giàu từ nhỏ, một người nghèo khổ vươn lên. Họ bị cuốn vào cuộc đối đầu định mệnh kéo dài suốt đời, cho đến khi sự thật và lòng tha thứ hé lộ.</p>          
+        </div>
+      </div>
+      <div class="book-card tam-ly">
+        <img src= "https://product.hstatic.net/200000408481/product/aa5a4ba8dbab23efcbd7d1cc1dd276da_3e99c6f692724989a0a0d4d5b95544a9.jpg" alt="Muôn kiếp nhân sinh" class="book-img"/>
+        <div class="book-title">Muôn Kiếp Nhân Sinh</div>
+        <div class="book-author"><strong> Tác giả:</strong> Nguyên Phong</div>
+        <div class="book-price"><strong> Giá:</strong> 120.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Muôn kiếp nhân sinh',120000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Tâm lý - Kỹ năng </p>
+            <p><strong> Năm xuất bản: </strong> 2020</p>
+            <p><strong> Mô tả: </strong> Qua hành trình tiền kiếp và hậu kiếp của nhân vật Thomas, sách truyền tải thông điệp về luật nhân quả, luân hồi và sự tỉnh thức trong cuộc sống hiện đại.</p>
+        </div>
+     </div>
+      <div class="book-card trinh-tham ">
+        <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/363/455/products/aoda02.jpg?v=1710306224873" alt="Ảo dạ" class="book-img"/>
+        <div class="book-title">Ảo dạ</div>
+        <div class="book-author"><strong> Tác giả: </strong> Higashino Keigo</div>
+        <div class="book-price"><strong> Giá: </strong>85.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Ảo dạ',85000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Trinh thám </p>
+            <p><strong> Năm xuất bản: </strong> 2004 </p>
+            <p><strong> Mô tả: </strong> Tác phẩm xoay quanh một người đàn ông bí ẩn sống hai cuộc đời – ban ngày là một công dân mẫu mực, ban đêm là kẻ sát nhân, mở ra những câu hỏi sâu sắc về bản chất con người và cái giá của sự báo thù. </p>
+        </div>
+    </div>
+      <div class ="book-card van-hoc">
+        <img src = "https://www.netabooks.vn/Data/Sites/1/Product/42598/khong-gia-dinh.jpg" alt = "Không gia đình" class="book-img"/>
+        <div class="book-title"> Không gia đình </div>
+        <div class="book-author"><strong> Tác giả: </strong> Sans Famille </div>
+        <div class="book-price"><strong> Giá: </strong>128.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Không gia đình',128000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Văn học </p>
+            <p><strong> Năm xuất bản: </strong> 1878 </p>
+            <p><strong> Mô tả: </strong> Câu chuyện kể về hành trình phiêu lưu đầy gian khó của cậu bé mồ côi Rémi, từ bị bán đi làm nghệ sĩ rong cho đến khi tìm lại được gia đình thật sự, là bản ca cảm động về nghị lực, tình thương và lòng nhân ái.    </p>
+        </div>
+        </div>
+      <div class = "book-card tam-ly">
+        <img src ="https://www.nxbtre.com.vn/Images/Book/nxbtre_full_18302023_113035.jpg" alt = "Tâm lý học xã hội" class="book-img"/>
+        <div class="book-title"> Tâm lý học xã hội </div>
+        <div class="book-author"><strong> Tác giả: </strong> Nhiều tác giả </div>
+        <div class="book-price"><strong> Giá: </strong> 60.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Tâm lý học xã hội',60000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Tâm lý - Kỹ năng </p>
+            <p><strong> Năm xuất bản: </strong> 2019 </p>
+            <p><strong> Mô tả: </strong> Nói về tâm lý học trong xã hội </p>
+        </div>
+      </div>
+      <div class = "book-card trinh-tham">
+        <img src="https://cdn1.fahasa.com/media/catalog/product/i/m/image_180812.jpg" alt="Sự im lặng của bầy cừu" class="book-img"/>
+        <div class="book-title"> Sự im lặng của bầy cừu </div>
+        <div class="book-author"><strong> Tác giả: </strong> Thomas Harris </div>
+        <div class="book-price"><strong> Giá: </strong> 92.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Sự im lặng của bầy cừu',92000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Trinh thám </p>
+            <p><strong> Năm xuất bản: </strong> 1988 </p>
+            <p><strong> Mô tả: </strong> Câu chuyện theo chân đặc vụ FBI Clarice Starling khi cô tìm đến bác sĩ tâm thần kiêm kẻ sát nhân Hannibal Lecter để truy tìm tên sát nhân hàng loạt Buffalo Bill, mở ra những cuộc đối thoại căng thẳng và ám ảnh. </p>
+        </div>
+        </div>
+      <div class = "book-card tam-ly">
+        <img src="https://cdn1.fahasa.com/media/catalog/product/8/9/8936066694650_1.jpg" alt="Kỹ năng quản lý thời gian" class="book-img"/>
+        <div class="book-title"> Kỹ năng quản lý thời gian </div>
+        <div class="book-author"><strong> Tác giả: </strong> Jake Knapp </div>
+        <div class="book-price"><strong> Giá: </strong> 80.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Kỹ năng quản lý thời gian',80000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Tâm lý - Kỹ năng </p>
+            <p><strong> Năm xuất bản: </strong> 2020 </p>
+            <p><strong> Mô tả: </strong> Kỹ năng quản lý thời gian </p>
+        </div>
+      </div>
+      <div class="book-card tam-ly">
+        <img src="https://bizweb.dktcdn.net/100/197/269/products/sapiens-luoc-su-ve-loai-nguoi-outline-5-7-2017-02.jpg?v=1520935327270" alt="Sapiens - Lược sử loài người" class="book-img"/>
+        <div class="book-title"> Sapiens - Lược sử loài người </div>
+        <div class="book-author"><strong> Tác giả: </strong> Yuval Noah Harari </div>
+        <div class="book-price"><strong> Giá: </strong> 234.000đ</div>
+        <div class="book-actions">
+          <button class="info-btn">Thông tin sách</button>
+          <button class="add-btn" onclick="addToCart(1,'Sapiens - Lược sử loài người',234000)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="book-details">
+            <br>
+            <p><strong>Thể loại:</strong> Tâm lý - Kỹ năng </p>
+            <p><strong> Năm xuất bản: </strong> 2011 </p>
+            <p><strong> Mô tả: </strong> Cuốn sách kể lại hành trình tiến hóa của loài người từ Homo sapiens thời săn bắn hái lượm đến xã hội hiện đại, thông qua ba cuộc cách mạng lớn </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+<script>
+     function filterBooks(category) {
+      const cards = document.querySelectorAll(".book-card");
+      const buttons = document.querySelectorAll(".filter-btn");
+
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      cards.forEach(card => {
+        if (category === "all" || card.classList.contains(category)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+</script>
+<script>
+     document.querySelectorAll('.info-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.book-card');
+      card.classList.toggle('expanded');
+    });
+  });
+
+  function filterBooks(category) {
+    const cards = document.querySelectorAll('.book-card');
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    cards.forEach(card => {
+      if (category === 'all') {
+        card.style.display = 'block';
+      } else {
+        card.style.display = card.classList.contains(category) ? 'block' : 'none';
+      }
+    });
+  }
+</script>
+<script>
+const book= [
+{
+  id: 'book001',
+  title: 'Hai số phận',
+  author: 'Jeffrey Archer',
+  price: 98000,
+},
+{
+  id: 'book002',
+  title: 'Muôn kiếp nhân sinh',
+  author: 'Nguyên Phong',
+  price: 120000,
+},
+{
+  id: 'book003',
+  title: 'Ảo dạ',
+  author: 'Higashino Keigo',
+  price: 85000,
+},
+{
+  id: 'book004',
+  title: 'Không gia đình',
+  author: 'Sans Famille',
+  price: 128000,
+},
+{
+  id: 'book005',
+  title: 'Tâm lý học xã hội',
+  author: 'Nhiều tác giả',
+  price: 60000,
+},
+{
+  id: 'book006',
+  title: 'Sự im lặng của bầy cừu',
+  author: 'Thomas Harris',
+  price: 92000,
+},
+{
+  id: 'book007',
+  title: 'Kỹ năng quản lý thời gian',
+  author: 'Jake Knapp',
+  price: 80000,
+},
+{
+  id: 'book008',
+  title: 'Sapiens - Lược sử loài người',
+  author: 'Yuval Noah Haruri',
+  price: 234000,
+},
+];
+</script>
+<script>
+   const bookList = document.getElementById('book-list');
+  book.forEach(book => {
+    const bookDiv = document.createElement('div');
+    bookDiv.className = 'book-card';
+    bookDiv.innerHTML = `
+      <div class="book-title"><strong>${book.title}</strong></div>
+      <div class="book-author">Tác giả: ${book.author}</div>
+      <div class="book-price">Giá: ${book.price.toLocaleString()}đ</div>
+      <div class="book-actions">
+        <button
+        class="add-to-cart"
+        data-id = "${book.id}"
+        data-title = "${book.title}"
+        data-author = "${book.author}"
+        data-price = "${book.price}"
+      >Thêm vào giỏ hàng </button>
+      </div>
+    `;
+    bookList.appendChild(bookDiv);
+  });
+  document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('add-to-cart')) {
+    const btn = e.target;
+
+    const book = {
+      id: btn.dataset.id,
+      title: btn.dataset.title,
+      author: btn.dataset.author,
+      price: parseInt(btn.dataset.price),
+      quantity:1,
+    };
+
+    addToCart(book);
+    alert(`Đã thêm "${book.title}" vào giỏ hàng!`);
+  }
+});
+
+// Thêm vào giỏ hàng
+function addToCart(book) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const existing = cart.find(item => item.id === book.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    book.quantity = 1;
+    cart.push(book);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+// Hiển thị giỏ hàng
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartDiv = document.getElementById('cart');
+  cartDiv.innerHTML = '';
+  let total = 0;
+
+  cart.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.innerHTML = `
+      <p>
+        <strong>${item.title}</strong> - Số lượng: ${item.quantity} - 
+        Giá: ${(item.price * item.quantity).toLocaleString()}đ
+        <button onclick="removeItem('${item.id}')">Xóa</button>
+      </p>
+    `;
+    cartDiv.appendChild(itemDiv);
+    total += item.price * item.quantity;
+  });
+
+  document.getElementById('total').textContent = `Tổng: ${total.toLocaleString()}đ`;
+}
+
+function removeItem(id) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = cart.filter(item => item.id !== id);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+// Load giỏ hàng khi tải lại trang
+renderCart();
+</script>
+<script>
+  function addToCart(id, title, price) {
+    alert("Đã thêm '" + title + "' vào giỏ hàng");
+    // Bạn có thể thêm logic xử lý giỏ hàng tại đây
+  }
+</script>
+</body>
+</html>
+
+  

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng | Trạm Sạc Pin Tâm Hồn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: url(https://png.pngtree.com/background/20210710/original/pngtree-creative-synthesis-simple-book-education-and-training-background-picture-image_1048845.jpg);
+      background-size: cover;
+      color: #333;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: -1;
+    }
+
+    header {
+      padding: 20px 50px;
+      color: rgb(59, 162, 234);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+    }
+
+    header .left-info {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    nav a {
+      color: rgb(59, 162, 234);
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      color: #1e40af;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      color: #1e40af;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+
+    img.book-thumb {
+      width: 60px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      background-color: #1e40af;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #f59e0b;
+    }
+
+    footer {
+      background-color: rgba(250, 250, 250, 0.9);
+      padding: 2rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #6b7280;
+      margin-top: 4rem;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="C:\Users\Windows\Downloads\logo.png" alt="Logo Trạm Sạc Pin Tâm Hồn">
+      </div>
+    </div>
+    <div class="left-info">
+      <h1><strong>Trạm Sạc Pin Tâm Hồn</strong></h1>
+      <p>Nguyễn Vũ Thanh Giang</p>
+      <p>MSSV: 31231026898</p>
+    </div>
+    <nav>
+      <a href="books.html">Trang chủ</a>
+      <a href="books_archive.html">Kho tàng sách</a>
+      <a href="cart.html">Giỏ hàng</a>
+      <a href="#login">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Giỏ Hàng Của Bạn</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tên Sách</th>
+          <th>Số Lượng</th>
+          <th>Đơn Giá</th>
+          <th>Thành Tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <br>
+    <div id="cart"></div>
+    <p id="total" style="font-weight: bold; margin-top: 20px; font-size:18px;"></p>
+
+    <button class="checkout-btn">Tiến hành thanh toán</button>
+  </main>
+
+  <footer>
+    <p>© 2025 Trạm Sạc Pin Tâm Hồn. All rights reserved.</p>
+    <p><strong>Liên hệ:</strong> 0909 123 456 | <strong>Email:</strong> sacpintamhon@books.com</p>
+    <p><strong>Mạng xã hội:</strong> 
+      <a href="https://www.facebook.com/thanh.gianggg.067/?locale=vi_VN" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/_ciara.bl_/" target="_blank">Instagram</a> |
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">TikTok</a>
+    </p>
+  </footer>
+<script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const tbody = document.querySelector('tbody');
+        let total = 0;
+
+        cart.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.title}</td>
+                <td>${item.quantity}</td>
+                <td>${item.price.toLocaleString()}₫</td>
+                <td>${(item.price * item.quantity).toLocaleString()}₫</td>
+            `;
+            tbody.appendChild(row);
+            total += item.price * item.quantity;
+        });
+
+        document.getElementById('total').innerText = `Tổng cộng: ${total.toLocaleString()}₫`;
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trạm Sạc Pin Tâm Hồn</title>
+    <meta name="description" content="Hiệu sách trực tuyến truyền cảm hứng và chữa lành tâm hồn bạn bằng từng trang sách"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Playfair Display', serif;
+            background: url(https://png.pngtree.com/background/20210710/original/pngtree-creative-synthesis-simple-book-education-and-training-background-picture-image_1048845.jpg);
+            background-size: cover;
+            color: #333;
+            scroll-behavior: smooth;
+            position:relative;
+            overflow-x: hidden;
+            backdrop-filter: blur(10px);
+        }
+        body::before{
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        header{
+            padding: 20px 50px;
+            color: rgb(59, 162, 234);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        .logo img{
+            height: 120px;
+            width: auto;
+        }
+        header .left-info{
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        header .left-info p{
+            margin: 0;
+        }
+        nav a {
+            color: rgb(59, 162, 234);
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover{
+            color: #f59e0b;
+            text-decoration: underline;
+        }
+        .container{
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 2rem;
+        }
+        h2{
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            color: #1e40af;
+            text-align: center;
+        }
+        .section{
+            margin-bottom: 3rem;
+        }
+        .section p{
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4b5563;
+            text-align: center;
+        }
+        footer{
+            background-color: rgba(250, 250, 250, 0.9);
+            padding: 2rem;
+            text-align: center;
+            font-size: 1rem;
+            color: #6b7280;
+            margin-top: 4rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        footer img{
+            max-width: 50px;
+            margin-top: 10px;
+        }
+        .timeline{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .timeline-item{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .timeline-dot{
+            width: 20px;
+            height: 20px;
+            background-color: #1e40af;
+            border-radius: 50%;
+        }
+        .timeline-content h3{
+            font-size: 1.5rem;
+            color: #f59e0b;
+        }
+        .timeline-content p{
+            font-size: 1rem;
+            color: #4b5563;
+        }
+        .timeline-item:hover .timeline-dot{
+            background-color: #b79b2c;
+        }
+        .timeline-item:hover .timeline-content h3{
+            color: #b79b2c;
+        }
+        .fade-in{
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in-visible{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="C:\Users\Windows\Downloads\logo.png" alt="Logo Trạm Sạc Pin Tâm Hồn">
+            </div>
+        </div>
+        <div class="left-info">
+            <h1><strong> Trạm Sạc Pin Tâm Hồn</strong></h1>
+            <p>Nguyễn Vũ Thanh Giang</p>
+            <p>MSSV: 31231026898</p>
+        </div>
+        <nav>
+            <a href="books.html">Trang chủ</a>
+            <a href="books_archive.html">Kho tàng sách</a>
+            <a href="cart.html">Giỏ hàng</a>
+            <a href="login.html">Đăng nhập</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="section fade-in" id="about" data-aos="fade-up">
+            <h2>Giới thiệu</h2>
+            <p><strong>Trạm Sạc Pin Tâm Hồn</strong> là một hiệu sách trực tuyến chuyên cung cấp các cuốn sách giúp bạn tìm lại sự bình yên trong tâm hồn. Chúng tôi tin rằng mỗi trang sách đều có thể mang đến cho bạn một nguồn năng lượng tích cực, chữa lành mọi tổn thương và thắp sáng những hy vọng mới.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <img src="c:\Users\Windows\Downloads\tram-sac-pin.png.png" alt="Trạm Sạc Pin Tâm Hồn" style="width: 400px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            </div>
+        </section>
+
+        <section class="section fade-in" id="history" data-aos="fade-up">
+            <h2>Lịch sử hình thành và phát triển</h2>
+            <p><strong>Trạm Sạc Pin Tâm Hồn</strong> được thành lập vào năm 2020, với mục tiêu trở thành nơi lưu giữ những cuốn sách quý giá giúp mọi người tìm thấy sự an lạc trong cuộc sống. Chúng tôi bắt đầu từ những cuốn sách đơn giản và đã không ngừng mở rộng danh mục sản phẩm để phục vụ nhu cầu tinh thần của khách hàng.</p>
+        </section>
+
+        <section class="section timeline-section fade-in" data-aos="fade-up">
+            <h2>Thành tựu nổi bật</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>100,000+ quyển sách đã bán</h3>
+                        <p>Chúng tôi đã lan tỏa tri thức tới hàng nghìn độc giả trên cả nước trong vòng 5 năm qua.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>50+ tác giả hợp tác</h3>
+                        <p>Tự hào là cầu nối giữa độc giả và những cây bút tâm huyết trong nhiều lĩnh vực.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>20 chương trình tặng sách miễn phí</h3>
+                        <p>Phối hợp cùng các tổ chức xã hội để trao gửi tri thức đến cộng đồng khó khăn.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in" id="vision" data-aos="fade-up">
+            <h2>Sứ mệnh</h2>
+            <p>Sứ mệnh của chúng tôi là mang đến cho cộng đồng những cuốn sách chất lượng, giúp họ vượt qua khó khăn trong cuộc sống, và tìm thấy cảm hứng, động lực để sống tốt hơn mỗi ngày. Chúng tôi tin rằng sách không chỉ là nguồn kiến thức, mà còn là người bạn đồng hành đáng tin cậy trong mọi chặng đường cuộc sống.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Trạm Sạc Pin Tâm Hồn. All rights reserved.</p>
+        <p><strong>Liên hệ:</strong> 0909 123 456 | <strong>Email:</strong> sacpintamhon@books.com</p>
+        <p><strong>Mạng xã hội:</strong> Facebook | Instagram | TikTok</p>
+        <a href="https://www.facebook.com/thanh.gianggg.067/?locale=vi_VN" target="_blank" rel="noopener noreferrer">Facebook</a> |
+        <a href="https://www.instagram.com/_ciara.bl_/" target="_blank" rel="noopener noreferrer">Instagram</a> |
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" target="_blank" rel="noopener noreferrer">TikTok</a>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

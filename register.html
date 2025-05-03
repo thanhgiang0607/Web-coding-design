@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Trạm Sạc Pin Tâm Hồn</title>
+    <meta name="description" content="Đăng ký tài khoản Trạm Sạc Pin Tâm Hồn để khám phá kho tàng sách và tìm sự bình yên cho tâm hồn"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background: url(https://png.pngtree.com/background/20210710/original/pngtree-creative-synthesis-simple-book-education-and-training-background-picture-image_1048845.jpg);
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            backdrop-filter: blur(5px);
+        }
+        .register-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .register-container h2 {
+            margin-bottom: 20px;
+            color: #1e40af;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3b82f6;
+        }
+        .login-link {
+            margin-top: 10px;
+            color: #4b5563;
+        }
+        .login-link a {
+            color: #1e40af;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Đăng ký tài khoản</h2>
+        <form action="login.html" method="POST">
+            <input type="text" name="username" placeholder="Tên đăng nhập" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Mật khẩu" required><br>
+            <input type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" required><br>
+            <button type="submit">Đăng ký</button>
+        </form>
+        <p class="login-link">Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a></p>
+    </div>
+
+</body>
+</html>
